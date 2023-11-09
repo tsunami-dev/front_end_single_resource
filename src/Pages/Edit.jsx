@@ -1,4 +1,4 @@
-import GamesEditForm from "../Components/ColorEditForm";
+import GameEditForm from "../Components/ColorEditForm";
 
 function Edit() {
   return (
