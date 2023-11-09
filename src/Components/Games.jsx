@@ -1,50 +1,59 @@
 import { useState, useEffect } from "react";
-import Game from "./Game";
+import { Link } from "react-router-dom";
 
 const API = import.meta.env.VITE_API_URL;
 
-function Games () {
-    const [games, setGames] = useState ([]);
+function Games() {
+  const [games, setGames] = useState([]);
 
-        useEffect(() =>{
-        const fetchData = async () => {
-            try{
-                fetch(`${API}/games`)
-                    .then(res => res.json())
-                    .then(res => {
-                        setGames(res)
-                    })
-            } catch (error) {
-              return error
-            }
-        }
-        fetchData()
-    },  [])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        fetch(`${API}/games`)
+          .then((res) => res.json())
+          .then((res) => {
+            setGames(res);
+          });
+      } catch (error) {
+        return error;
+      }
+    };
+    fetchData();
+  }, []);
 
-    return (
-        <div className="Games">
-            <section>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Banned</th>
-                            <th>Game Name</th>
-                            <th>Rating</th>
-                            <th>price</th>
-                            <th>type</th>
-                            <th>genre</th>
-                            <th>year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {games.map((game) =>{
-                            return <Game key={game.id} game={game} />
-                        })}
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    );
+  return (
+    <div className="container-games">
+      <h1>Games Inventory:</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Game Name</th>
+            <th>ESRB Rating</th>
+            <th>Price</th>
+            <th>Game Type</th>
+            <th>Genre</th>
+            <th>Year Released</th>
+            <th>Is Banned</th>
+          </tr>
+        </thead>
+        <tbody>
+          {games.map((item) => (
+            <tr key={item.id} className="Game">
+              <td>
+                <Link to={`/games/${item.id}`}>{item.name}</Link>
+              </td>
+              <td>{item.esrb_rating}</td>
+              <td>{item.price}</td>
+              <td>{item.game_type}</td>
+              <td>{item.genre}</td>
+              <td>{item.release_year}</td>
+              <td>{item.is_banned}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default Games;
