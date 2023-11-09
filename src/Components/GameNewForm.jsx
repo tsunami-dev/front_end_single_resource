@@ -67,7 +67,7 @@ function GameNewForm() {
 
   return (
     <div className="New">
-      <h1 className="returnheader">Add New Game</h1>
+      <h2 className="returnheader">Add New Game:</h2>
       <form onSubmit={handleOnSubmit}>
         <label htmlFor="name">Game Name:</label>
         <input

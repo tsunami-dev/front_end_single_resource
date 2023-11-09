@@ -3,7 +3,7 @@ import GameNewForm from "../Components/GameNewForm";
 function New() {
   return (
     <div className="New">
-      <h2>New</h2>
+      <h2>Add Game:</h2>
       <GameNewForm />
     </div>
   );

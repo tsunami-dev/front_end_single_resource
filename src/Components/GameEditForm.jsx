@@ -71,7 +71,7 @@ function GameEditForm() {
 
   return (
     <div className="New">
-      <h1 className="returnheader">Add New Game</h1>
+      <h2 className="returnheader">Edit Game Details:</h2>
       <form onSubmit={handleOnSubmit}>
         <label htmlFor="name">Game Name:</label>
         <input
