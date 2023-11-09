@@ -9,16 +9,17 @@ function GameEditForm() {
 
   const [game, setGame] = useState({
     name: "",
-    esrb_rating:"",
-    price:0,
-    game_type:"",
-    genre:"",
-    release_year:0,
-    isBanned: false,
+    esrb_rating: "",
+    price: 0,
+    game_type: "",
+    genre: "",
+    release_year: 0,
+    isBanned: false
   });
 
-  const handleTextChange = (event) => {
-    setGame({ ...game, [event.target.id]: event.target.value });
+  const handleTextChange = (e) => {
+    const { id, value } = e.target;
+    setGame({ ...game, [id]: value });
   };
 
   const handleCheckboxChange = () => {
@@ -27,31 +28,31 @@ function GameEditForm() {
 
   // Update game . Redirect to show view
   const updateGame = () => {
-    const gameData ={
-        name: game.name,
-        esrb_rating: game.esrb_rating,
-        price: game.price,
-        game_type: game.game_type,
-        genre: game.genre,
-        release_year: game.release_year,
-        isBanned: game.isBanned
-    }
+    const gameData = {
+      name: game.name,
+      esrb_rating: game.esrb_rating,
+      price: game.price,
+      game_type: game.game_type,
+      genre: game.genre,
+      release_year: game.release_year,
+      isBanned: game.isBanned
+    };
     try {
-        fetch(`${API}/games`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(gameData)
-        })
-            .then((res) => res.json())
-            .then(() => navigate("/games"));
+      fetch(`${API}/games`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(gameData)
+      })
+        .then((res) => res.json())
+        .then(() => navigate("/games"));
     } catch (error) {
-      return error  
+      return error;
     }
   };
 
   // On page load, fill in the form with the color data.
 
-  const handleSubmit = (event) => {
+  const handleOnSubmit = (event) => {
     event.preventDefault();
     updateGame();
     resetForm();
@@ -146,7 +147,7 @@ function GameEditForm() {
         <br />
         <br />
         <h4 className="select">Genre:</h4>
-        <select onChange={handleSelectChange}>
+        <select value={game.genre} id="genre" onChange={handleTextChange}>
           <option value=""></option>
           <option value="Action game">Action Game</option>
           <option value="Action-adventure game">Action-Adventure Game</option>
@@ -164,7 +165,6 @@ function GameEditForm() {
           <option value="Simulation video game">Simulation Video Game</option>
           <option value="Strategy game">Strategy Game</option>
         </select>
-        <h4>You selected the Genre: {selectOption}</h4>
         <br />
         <br />
         <label htmlFor="year">Year Released:</label>
@@ -186,11 +186,10 @@ function GameEditForm() {
         <button type="submit">Time for an update!</button>
       </form>
       <br />
-      <Link to={`/games/${index}`}>
-        <button>Maybe next time!</button>
+      <Link to={`/games`}>
+        <button>Back To Games!</button>
       </Link>
     </div>
   );
 }
 export default GameEditForm;
-

@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import Select from "react-dropdown-select";
+import { Link, useNavigate } from "react-router-dom";
 
 const API = import.meta.env.VITE_API_URL;
 
 function GameNewForm() {
   const navigate = useNavigate();
-  //   const [selectOption, setSelectOption] = useState("");
   const [game, setGame] = useState({
     name: "",
     rating: "",
@@ -44,10 +42,6 @@ function GameNewForm() {
     const { id, value } = e.target;
     setGame({ ...game, [id]: value });
   };
-
-  //   const handleSelectChange = (e) => {
-  //     setSelectOption(e.target.value);
-  //   };
 
   const handleCheckboxChange = () => {
     setGame({ ...game, isBanned: !game.isBanned });
@@ -185,11 +179,11 @@ function GameNewForm() {
           checked={game.isBanned}
         />
         <br />
-        <button type="submit">Lets get this on file!</button>
+        <button type="submit">Add To Inventory!</button>
       </form>
       <br />
-      <Link to={`/games/${index}`}>
-        <button>Maybe next time!</button>
+      <Link to={`/games`}>
+        <button>Back To Games!</button>
       </Link>
     </div>
   );
