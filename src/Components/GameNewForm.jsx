@@ -47,6 +47,20 @@ function GameNewForm() {
     setGame({ ...game, isBanned: !game.isBanned });
   };
 
+  const handleRatingChange = (e) => {
+    const { value } = e.target;
+    // If the selected value is the same as the current value, set it to an empty string
+    const ratingValue = value === game.rating ? "" : value;
+    setGame({ ...game, rating: ratingValue });
+  };
+
+  const handleTypeChange = (e) => {
+    const { value } = e.target;
+    // If the selected value is the same as the current value, set it to an empty string
+    const typeValue = value === game.type ? "" : value;
+    setGame({ ...game, type: typeValue });
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     addGame();
@@ -67,9 +81,9 @@ function GameNewForm() {
 
   return (
     <div className="New">
-      <h2 className="returnheader">Add New Game:</h2>
+      <h2 className="returnheader">Add New Game: </h2>
       <form onSubmit={handleOnSubmit}>
-        <label htmlFor="name">Game Name:</label>
+        <label htmlFor="name">Game Name: </label>
         <input
           id="name"
           value={game.name}
@@ -80,34 +94,80 @@ function GameNewForm() {
         />
         <fieldset>
           <div className="radio">
-            <legend
-              htmlFor="rating"
-              value={game.rating}
-              onChange={handleTextChange}
-            >
-              ESRB Rating:
-            </legend>
+            <legend>ESRB Rating: </legend>
             <label>
-              <input name="rating" value="E" type="radio" checked /> Everyone
+              <input
+                name="rating"
+                value="E"
+                type="radio"
+                checked={game.rating === "E"}
+                onChange={handleRatingChange}
+              />
+              Everyone
             </label>
             <label>
-              <input name="rating" value="E10+" type="radio" /> Everyone 10+
+              <input
+                name="rating"
+                value="E10+"
+                type="radio"
+                checked={game.rating === "E10+"}
+                onChange={handleRatingChange}
+              />
+              Everyone 10+
             </label>
             <label>
-              <input name="rating" value="T" type="radio" /> Teen
+              <input
+                name="rating"
+                value="T"
+                type="radio"
+                checked={game.rating === "T"}
+                onChange={handleRatingChange}
+              />
+              Teen
             </label>
             <label>
-              <input name="rating" value="M" type="radio" /> Mature 17+
+              <input
+                name="rating"
+                value="M"
+                type="radio"
+                checked={game.rating === "M"}
+                onChange={handleRatingChange}
+              />
+              Mature 17+
             </label>
             <label>
-              <input name="rating" value="AO" type="radio" /> Adults Only 18+
+              <input
+                name="rating"
+                value="AO"
+                type="radio"
+                checked={game.rating === "AO"}
+                onChange={handleRatingChange}
+              />
+              Adults Only 18+
             </label>
             <label>
-              <input name="rating" value="RP" type="radio" /> Rating Pending
+              <input
+                name="rating"
+                value="RP"
+                type="radio"
+                checked={game.rating === "RP"}
+                onChange={handleRatingChange}
+              />
+              Rating Pending
+            </label>
+            <label>
+              <input
+                name="rating"
+                value="Null"
+                type="radio"
+                checked={game.rating === " "}
+                onChange={handleRatingChange}
+              />
+              Unknown
             </label>
           </div>
         </fieldset>
-        <label htmlFor="price">Price:</label>
+        <label htmlFor="price">Price: </label>
         <input
           id="price"
           value={game.price}
@@ -120,29 +180,52 @@ function GameNewForm() {
         />
         <fieldset>
           <div className="radio">
-            <legend
-              htmlFor="type"
-              value={game.type}
-              onChange={handleTextChange}
-            >
-              Game Type:
-            </legend>
+            <legend>Game Type: </legend>
             <label>
-              <input name="type" value="First-person" type="radio" checked />{" "}
+              <input
+                name="type"
+                value="First-person"
+                type="radio"
+                checked={game.type === "First-person"}
+                onChange={handleTypeChange}
+              />
               First-person
             </label>
             <label>
-              <input name="type" value="Third-person" type="radio" />{" "}
+              <input
+                name="type"
+                value="Third-person"
+                type="radio"
+                checked={game.type === "Third-person"}
+                onChange={handleTypeChange}
+              />
               Third-person
             </label>
             <label>
-              <input name="type" value="Open world" type="radio" /> Open world
+              <input
+                name="type"
+                value="Open world"
+                type="radio"
+                checked={game.type === "Open world"}
+                onChange={handleTypeChange}
+              />
+              Open world
+            </label>
+            <label>
+              <input
+                name="type"
+                value="Null"
+                type="radio"
+                checked={game.type === ""}
+                onChange={handleTypeChange}
+              />
+              Unknown
             </label>
           </div>
         </fieldset>
         <br />
         <br />
-        <h4 className="select">Genre:</h4>
+        <h4 className="select">Genre: </h4>
         <select value={game.genre} id="genre" onChange={handleTextChange}>
           <option value=""></option>
           <option value="Action game">Action Game</option>
@@ -163,7 +246,7 @@ function GameNewForm() {
         </select>
         <br />
         <br />
-        <label htmlFor="year">Year Released:</label>
+        <label htmlFor="year">Year Released: </label>
         <input
           id="year"
           value={game.year}
@@ -171,7 +254,7 @@ function GameNewForm() {
           onChange={handleTextChange}
           placeholder="Release year..."
         />
-        <label htmlFor="isBanned">Banned Game:</label>
+        <label htmlFor="isBanned">Banned Game: </label>
         <input
           id="isBanned"
           type="checkbox"
