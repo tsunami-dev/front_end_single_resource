@@ -203,8 +203,12 @@ function GameNewForm() {
           checked={game.isBanned}
         />
         <br />
-        <input type="submit" />
+        <button type="submit">Lets get this on file!</button>
       </form>
+      <br />
+      <Link to={`/games/${index}`}>
+        <button>Maybe next time!</button>
+      </Link>
     </div>
   );
 }
