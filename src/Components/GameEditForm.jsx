@@ -39,7 +39,7 @@ function GameEditForm() {
     try {
         fetch(`${API}/games`, {
             method: "PUT",
-            headers: { "Content-Type": "applications/json" },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(gameData)
         })
             .then((res) => res.json())
