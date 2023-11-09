@@ -1,8 +1,11 @@
-# React + Vite
+# Welcome to our app
+made by Rich Boyce and Tyller Mendoza
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[GitHub FrontEnd Repo](https://github.com/rboyce212/paired_project_single_resource_backend) 
+heres link to the backend
 
-Currently, two official plugins are available:
+## installs
+to start all we are goinging to need is a ( npm i ) to make sure we got all those dependecies installed
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## the app
+our app is about access into the database of games and the information of said games in this app you will see that we use something call CRUD to allow you full control when using our database, all you need to know really is that it allows you to read, create, delete, and update the data all in one app. isn't that cool! while the app is a great thing we are still working hard to give you the best experince so keep in mind this is only V.1.0 meaning its just the begining and i hope you enjoy the journey with us as we strive to give better work each time.
