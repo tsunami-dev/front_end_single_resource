@@ -6,7 +6,7 @@ const API = import.meta.env.VITE_API_URL;
 
 function GameNewForm() {
   const navigate = useNavigate();
-  const [selectOption, setSelectOption] = useState("");
+  //   const [selectOption, setSelectOption] = useState("");
   const [game, setGame] = useState({
     name: "",
     rating: "",
@@ -30,7 +30,7 @@ function GameNewForm() {
     try {
       fetch(`${API}/games`, {
         method: "POST",
-        headers: { "Content-Type": "applications/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(gameData)
       })
         .then((res) => res.json())
@@ -41,30 +41,13 @@ function GameNewForm() {
   };
 
   const handleTextChange = (e) => {
-    setGame({ ...game, [e.target.id]: e.target.value });
+    const { id, value } = e.target;
+    setGame({ ...game, [id]: value });
   };
 
-  //   const options = [
-  //     "Action game",
-  //     "Action-adventure game",
-  //     "Adventure game",
-  //     "Board Games",
-  //     "Educational game",
-  //     "Fighting game",
-  //     "First-person shooter",
-  //     "Platformer",
-  //     "Race game",
-  //     "Real-time strategy",
-  //     "Role-playing game",
-  //     "Sandbox",
-  //     "Shooter",
-  //     "Simulation video game",
-  //     "Strategy game"
-  //   ];
-
-  const handleSelectChange = (e) => {
-    setSelectOption(e.target.value);
-  };
+  //   const handleSelectChange = (e) => {
+  //     setSelectOption(e.target.value);
+  //   };
 
   const handleCheckboxChange = () => {
     setGame({ ...game, isBanned: !game.isBanned });
@@ -166,7 +149,7 @@ function GameNewForm() {
         <br />
         <br />
         <h4 className="select">Genre:</h4>
-        <select onChange={handleSelectChange}>
+        <select value={game.genre} id="genre" onChange={handleTextChange}>
           <option value=""></option>
           <option value="Action game">Action Game</option>
           <option value="Action-adventure game">Action-Adventure Game</option>
@@ -184,7 +167,6 @@ function GameNewForm() {
           <option value="Simulation video game">Simulation Video Game</option>
           <option value="Strategy game">Strategy Game</option>
         </select>
-        <h4>You selected the Genre: {selectOption}</h4>
         <br />
         <br />
         <label htmlFor="year">Year Released:</label>
