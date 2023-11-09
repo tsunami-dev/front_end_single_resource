@@ -1,7 +1,7 @@
 # Welcome to our app
 made by Rich Boyce and Tyller Mendoza
 
-[GitHub FrontEnd Repo](https://github.com/rboyce212/paired_project_single_resource_backend) 
+[GitHub BackEnd Repo](https://github.com/rboyce212/paired_project_single_resource_backend) 
 heres link to the backend
 
 ## installs
